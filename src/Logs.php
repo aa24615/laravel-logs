@@ -15,10 +15,7 @@ class Logs
 
     public function request()
     {
-    }
 
-    protected function time()
-    {
         $start = str_pad(LARAVEL_START, 15, 0);
         $end = str_pad(microtime(true), 15, 0);
 
