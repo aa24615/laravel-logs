@@ -1,6 +1,6 @@
 {
     "name": "zyan/laravel-logs",
-    "description": "漂亮的laraavel日志",
+    "description": "一个记录laravel用户请求的日志中间件",
     "license": "MIT",
     "authors": [
         {

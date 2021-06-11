@@ -15,6 +15,7 @@ class Logs
 
     public function __construct()
     {
+        $this->appendContent($this->br());
         $this->request = request();
     }
 
@@ -84,7 +85,13 @@ class Logs
     {
 
         $body = $response->getContent();
-        $this->appendContent(print_r($body,true));
+
+        $data = json_decode($body,true);
+        if($data){
+            $this->appendContent("response: ".print_r($body,true));
+        }else{
+            $this->appendContent("response: ".$body);
+        }
 
         return $this;
     }
@@ -129,7 +136,7 @@ class Logs
      *
      * @param string $content
      *
-     * @return void
+     * @return self
      *
      * @author 读心印 <aa24615@qq.com>
      */
