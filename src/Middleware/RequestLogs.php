@@ -3,6 +3,7 @@
 namespace Zyan\LaravelLogs\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Log;
 use Zyan\LaravelLogs\Logs;
 
 class RequestLogs
@@ -18,8 +19,12 @@ class RequestLogs
     {
         $response = $next($request);
 
-        $logs = new Logs();
-        $logs->request()->sql()->response()->write();
+        try {
+            $logs = new Logs();
+            $logs->request()->sql()->response()->write();
+        }catch (\Exception $e){
+            Log::error($e->getMessage().' '.$e->getFile().":".$e->getLine());
+        }
 
         return $response;
     }

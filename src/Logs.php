@@ -4,6 +4,7 @@ namespace Zyan\LaravelLogs;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
 
 class Logs
 {
@@ -12,7 +13,6 @@ class Logs
     public function __construct()
     {
         $this->request = request();
-        $this->response = response();
     }
 
     public function request()
@@ -53,7 +53,6 @@ class Logs
             if (!array_key_exists($log['query'], $data)) {
                 $data[$log['query']] = 0;
             }
-
             ++ $data[$log['query']];
         }
         arsort($data);
@@ -69,9 +68,9 @@ class Logs
      *
      * @author 读心印 <aa24615@qq.com>
      */
-    public function response()
+    public function response(JsonResponse $response)
     {
-        $body = $this->response->getContent();
+        $body = $response->getContent();
         $this->appendContent(print_r($body,true));
 
         return $this;
