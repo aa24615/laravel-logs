@@ -2,7 +2,7 @@
 
 namespace Zyan\LaravelLogs;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class Logs
 {
@@ -16,60 +16,69 @@ class Logs
     public function request()
     {
         $content = $this->request->ip()." ".$this->request->method()." : ".$this->request->getUri();
-
+        $this->appendContent($content);
+        $content = "DATA:".print_r($this->request->all(), true);
         $this->appendContent($content);
 
-        $content = print_r($this->request->all(), true);
-
-        $this->appendContent($content);
-
-        $disk = $this->getDisk();
-
-        $this->write($disk);
+        return $this;
     }
 
-
-    protected function sql()
+    /**
+     * sql.
+     *
+     * @return $this
+     *
+     * @author 读心印 <aa24615@qq.com>
+     */
+    public function sql()
     {
+        return $this;
     }
 
+    /**
+     * response.
+     *
+     * @return $this
+     *
+     * @author 读心印 <aa24615@qq.com>
+     */
     public function response()
     {
+        return $this;
     }
 
 
     /**
      * getDisk.
      *
-     * @return \Illuminate\Contracts\Filesystem\Filesystem|Storage
+     * @return Log|\Psr\Log\LoggerInterface
      *
      * @author 读心印 <aa24615@qq.com>
      */
     protected function getDisk()
     {
-        return Storage::disk('local');
+        $driver = config('logs.driver');
+
+        if (is_array($driver)) {
+            $disk = Log::stack($driver);
+        } else {
+            $disk = Log::channel($driver);
+        }
+        return $disk;
     }
 
     /**
      * write.
      *
-     * @param Storage $disk
-     * @param string $content
-     *
      * @return void
      *
      * @author 读心印 <aa24615@qq.com>
      */
-    protected function write($disk)
+    public function write()
     {
+        $disk = $this->getDisk();
         $content = $this->br().$this->content;
-
-        if ($disk->exists(config('logs.path')) === false) {
-            $disk->put(config('logs.path'), $content);
-        } else {
-            $disk->append(config('logs.path'), $content);
-        }
-
+        $disk->info($content);
         $this->content = '';
     }
 

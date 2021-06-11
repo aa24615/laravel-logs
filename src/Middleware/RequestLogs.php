@@ -1,13 +1,12 @@
 <?php
-namespace Zyan\LaravelLogs\Middleware;
 
+namespace Zyan\LaravelLogs\Middleware;
 
 use Closure;
 use Zyan\LaravelLogs\Logs;
 
 class RequestLogs
 {
-
     /**
      * Handle an incoming request.
      *
@@ -17,7 +16,6 @@ class RequestLogs
      */
     public function handle($request, Closure $next)
     {
-
         $response = $next($request);
 
         $logs = new Logs();
