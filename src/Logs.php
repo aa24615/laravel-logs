@@ -4,10 +4,12 @@ namespace Zyan\LaravelLogs;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\JsonResponse;
 
 class Logs
 {
+    /**
+     * @var string
+     */
     protected $content = '';
 
     public function __construct()
@@ -15,6 +17,13 @@ class Logs
         $this->request = request();
     }
 
+    /**
+     * request.
+     *
+     * @return self
+     *
+     * @author 读心印 <aa24615@qq.com>
+     */
     public function request()
     {
         $content = $this->request->ip()." ".$this->request->method()." : ".$this->request->getUri();
@@ -41,7 +50,7 @@ class Logs
     /**
      * sql.
      *
-     * @return $this
+     * @return self
      *
      * @author 读心印 <aa24615@qq.com>
      */
@@ -64,13 +73,14 @@ class Logs
     /**
      * response.
      *
-     * @return $this
+     * @return self
      *
      * @author 读心印 <aa24615@qq.com>
      */
-    public function response(JsonResponse $response)
+    public function response()
     {
-        $body = $response->getContent();
+
+        $body = response()->getContent();
         $this->appendContent(print_r($body,true));
 
         return $this;
@@ -111,11 +121,27 @@ class Logs
         $this->content = '';
     }
 
+    /**
+     * appendContent.
+     *
+     * @param string $content
+     *
+     * @return void
+     *
+     * @author 读心印 <aa24615@qq.com>
+     */
     protected function appendContent($content)
     {
         $this->content = $this->content.PHP_EOL.$content;
     }
 
+    /**
+     * br.
+     *
+     * @return string
+     *
+     * @author 读心印 <aa24615@qq.com>
+     */
     protected function br()
     {
         return '---------------------------------------------------------------';
