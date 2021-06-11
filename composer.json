@@ -1,0 +1,65 @@
+{
+    "name": "zyan/laravel-logs",
+    "description": "漂亮的laraavel日志",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "读心印",
+            "email": "aa24615@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "laravel/framework": "^5.0|^6.0|^7.0|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zyan\\LaravelLogs\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.2",
+        "phpunit/phpunit": "^9.0",
+        "orchestra/testbench": "^6.0",
+        "brainmaestro/composer-git-hooks": "^2.7",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "extra": {
+        "laravel": {
+
+        },
+        "hooks": {
+            "pre-commit": [
+                "composer fix"
+            ],
+            "pre-push": [
+                "composer test"
+            ]
+        }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "cghooks remove",
+            "cghooks add --ignore-lock",
+            "cghooks update"
+        ],
+        "post-merge": "composer install",
+        "post-install-cmd": [
+            "cghooks remove",
+            "cghooks add --ignore-lock",
+            "cghooks update"
+        ],
+        "cghooks": "vendor/bin/cghooks",
+        "fix": "php-cs-fixer fix --using-cache=no --ansi",
+        "test": "vendor/bin/phpunit --colors=always"
+    },
+    "scripts-descriptions": {
+        "test": "Run all tests.",
+        "fix": "Run style checks and fix violations."
+    }
+}

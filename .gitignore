@@ -1,0 +1,8 @@
+cghooks.lock
+.idea
+*.log
+.php_cs.cachecghooks.lock
+*.DS_Store
+vendor
+hooks
+composer.lock
