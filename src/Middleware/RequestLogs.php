@@ -19,8 +19,7 @@ class RequestLogs
         $response = $next($request);
 
         $logs = new Logs();
-
-        $logs->request();
+        $logs->request()->sql()->response()->write();
 
         return $response;
     }
