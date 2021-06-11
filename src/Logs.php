@@ -4,6 +4,7 @@ namespace Zyan\LaravelLogs;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class Logs
 {
@@ -73,14 +74,16 @@ class Logs
     /**
      * response.
      *
+     * @param Response $response
+     *
      * @return self
      *
      * @author 读心印 <aa24615@qq.com>
      */
-    public function response()
+    public function response($response)
     {
 
-        $body = response()->getContent();
+        $body = $response->getContent();
         $this->appendContent(print_r($body,true));
 
         return $this;
