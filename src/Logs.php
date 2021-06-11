@@ -47,7 +47,7 @@ class Logs
      */
     protected function getDisk()
     {
-        return Storage::disk('storage');
+        return Storage::disk('local');
     }
 
     /**
