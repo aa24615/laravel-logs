@@ -31,7 +31,9 @@
     },
     "extra": {
         "laravel": {
-
+            "providers": [
+                "Zyan\\LaravelLogs\\LogsServiceProvider"
+            ]
         },
         "hooks": {
             "pre-commit": [

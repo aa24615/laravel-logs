@@ -17,7 +17,7 @@ composer require zyan/laravel-logs -vvv
 ## 配置
 
 ```shell
-php artisan vendor:publish --provider= "Zyan\\LaravelLogs\\LogsServiceProvider" --tag=config
+php artisan vendor:publish --provider="Zyan\\LaravelLogs\\LogsServiceProvider" --tag=config
 ```
 然后去 `config/logs.php` 配置写入通道
 

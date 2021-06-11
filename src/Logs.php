@@ -58,13 +58,13 @@ class Logs
      */
     public function sql()
     {
-        $data    = [];
+        $data = [];
 
         foreach (DB::getQueryLog() as $log) {
             if (!array_key_exists($log['query'], $data)) {
                 $data[$log['query']] = 0;
             }
-            ++ $data[$log['query']];
+            ++$data[$log['query']];
         }
         arsort($data);
         $this->appendContent(var_export($data, true));
@@ -83,13 +83,12 @@ class Logs
      */
     public function response($response)
     {
-
         $body = $response->getContent();
 
-        $data = json_decode($body,true);
-        if($data){
-            $this->appendContent("response: ".print_r($body,true));
-        }else{
+        $data = json_decode($body, true);
+        if ($data) {
+            $this->appendContent("response: ".print_r($body, true));
+        } else {
             $this->appendContent("response: ".$body);
         }
 

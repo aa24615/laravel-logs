@@ -22,7 +22,7 @@ class RequestLogs
         try {
             $logs = new Logs();
             $logs->request()->sql()->response($response)->write();
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             Log::error($e->getMessage().' '.$e->getFile().":".$e->getLine());
         }
 
