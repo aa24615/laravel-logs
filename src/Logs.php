@@ -15,14 +15,7 @@ class Logs
 
     public function request()
     {
-
-        $start = str_pad(LARAVEL_START, 15, 0);
-        $end = str_pad(microtime(true), 15, 0);
-
-        $standard = config('develop.runtime-lower-limit');
-        $time = ($end - LARAVEL_START) * 1000;
-
-        $content = "请求地址[{$this->request->getUri()}] 开始时间[{$start}] 结束时间[{$end}] 运行时间[{$time}]";
+        $content = $this->request->ip()." ".$this->request->method()." : ".$this->request->getUri();
 
         $this->appendContent($content);
 

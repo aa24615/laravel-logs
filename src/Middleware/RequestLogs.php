@@ -5,7 +5,7 @@ namespace Zyan\LaravelLogs\Middleware;
 use Closure;
 use Zyan\LaravelLogs\Logs;
 
-class RequestLog
+class RequestLogs
 {
 
     /**
