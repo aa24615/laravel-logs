@@ -98,8 +98,7 @@ class RequestLogs
             $logs = new Logs();
             $logs->request()->sql()->response($response)->write();
             //按需配置你需要记录的信息
-            //->request() 记录请求信息
-            //->sql() 记录sql日志
+            //->request() 记录请求信息s
             //->response($response) 记录返回日志
             //->write() 执行写入
         }catch (\Exception $e){
@@ -109,9 +108,8 @@ class RequestLogs
         return $response;
     }
 }
-
 ```
-
+暂不支持sql日志 需要记录sql查询移步 [https://github.com/overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)
 
 ## 参与贡献
 

@@ -56,21 +56,21 @@ class Logs
      *
      * @author 读心印 <aa24615@qq.com>
      */
-    public function sql()
-    {
-        $data = [];
-
-        foreach (DB::getQueryLog() as $log) {
-            if (!array_key_exists($log['query'], $data)) {
-                $data[$log['query']] = 0;
-            }
-            ++$data[$log['query']];
-        }
-        arsort($data);
-        $this->appendContent(var_export($data, true));
-
-        return $this;
-    }
+//    public function sql()
+//    {
+//        $data = [];
+//
+//        foreach (DB::getQueryLog() as $log) {
+//            if (!array_key_exists($log['query'], $data)) {
+//                $data[$log['query']] = 0;
+//            }
+//            ++$data[$log['query']];
+//        }
+//        arsort($data);
+//        $this->appendContent(var_export($data, true));
+//
+//        return $this;
+//    }
 
     /**
      * response.
