@@ -96,7 +96,7 @@ class RequestLogs
     
         try {
             $logs = new Logs();
-            $logs->request()->sql()->response($response)->write();
+            $logs->request()->response($response)->write();
             //按需配置你需要记录的信息
             //->request() 记录请求信息s
             //->response($response) 记录返回日志
