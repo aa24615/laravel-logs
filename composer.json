@@ -30,11 +30,6 @@
         "friendsofphp/php-cs-fixer": "^3.0"
     },
     "extra": {
-        "laravel": {
-            "providers": [
-                "Zyan\\LaravelLogs\\LogsServiceProvider"
-            ]
-        },
         "hooks": {
             "pre-commit": [
                 "composer fix"
