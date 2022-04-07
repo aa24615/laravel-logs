@@ -105,7 +105,7 @@ class Logs
      */
     protected function getDisk()
     {
-        $driver = config('logs.driver');
+        $driver = config('logging.request.channel');
 
         if (is_array($driver)) {
             $disk = Log::stack($driver);

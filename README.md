@@ -16,17 +16,18 @@ composer require zyan/laravel-logs -vvv
 ```
 ## 配置
 
-```shell
-php artisan vendor:publish --provider="Zyan\\LaravelLogs\\LogsServiceProvider" --tag=config
-```
-然后去 `config/logs.php` 配置写入通道
+然后去 `config/logging.php` 配置日志通道
 
 ```php
 
 return [
-    'driver' => 'stack' //在 config/logging.php 配置日志通道
+    //...
+    'request' => [
+        'enabled' => true, //是否启用
+        'channel' => ['stack'], //通道
+        'trigger' => ['local','testing'] //环境
+    ]
 ];
-
 
 ```
 

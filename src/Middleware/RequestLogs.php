@@ -4,6 +4,7 @@ namespace Zyan\LaravelLogs\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\App;
 use Zyan\LaravelLogs\Logs;
 
 class RequestLogs
@@ -18,6 +19,16 @@ class RequestLogs
     public function handle($request, Closure $next)
     {
         $response = $next($request);
+
+
+        $logging = config('logging.request');
+
+        if(!$logging['enabled']){
+            return $response;
+        }
+        if (!App::environment($logging['trigger'])) {
+            return $response;
+        }
 
         try {
             $logs = new Logs();
