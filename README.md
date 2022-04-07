@@ -25,7 +25,7 @@ return [
     'request' => [
         'enabled' => true, //是否启用
         'channel' => ['stack'], //通道
-        'trigger' => ['local','testing'] //环境
+        'environment' => ['local','testing'] //环境
     ]
 ];
 

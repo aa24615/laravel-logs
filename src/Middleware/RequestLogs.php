@@ -26,7 +26,7 @@ class RequestLogs
         if(!$logging['enabled']){
             return $response;
         }
-        if (!App::environment($logging['trigger'])) {
+        if (!App::environment($logging['environment'])) {
             return $response;
         }
 
